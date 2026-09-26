@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     res.setHeader('Set-Cookie', `betlab_session=${token}; Path=/; HttpOnly; SameSite=Lax`);
     res.status(200).json({ user });
   } catch (e) {
-    res.status(400).json({ error: 'Email already exists or DB error' });
+    console.error('SIGNUP_ERROR', e);
+    res.status(400).json({ error: 'Email already exists or DB error', debug_message: e.message });
   }
 }
