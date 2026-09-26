@@ -12,6 +12,9 @@ this deployment.
 3. Broken access control on `/api/admin/users` (auth check is too weak).
 4. A `.env` file that gets committed, then deleted — but is still
    recoverable from git history.
+5. A mock M-Pesa (Daraja) deposit flow at `/deposit` that leaks its
+   consumer key client-side via `NEXT_PUBLIC_`, and a `/api/mpesa/debug`
+   route gated only by a static token passed in the URL query string.
 
 ## Setup
 
@@ -34,3 +37,6 @@ this deployment.
 - [ ] Run `trufflehog filesystem .` against a local clone
 - [ ] Run `nuclei -u <your-vercel-url>` with the exposed-panel /
       exposed-file templates once you're comfortable
+- [ ] Find the leaked Daraja consumer key in the `/deposit` page's JS
+- [ ] Find and query `/api/mpesa/debug` — figure out the token isn't
+      actually needed to notice the endpoint exists, then try guessing it
