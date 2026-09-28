@@ -1,0 +1,4 @@
+echo "SUPER_SECRET_STRIPE_KEY=sk_test_FAKE_lab_leaked_98765" > leaked-secret.env
+git add leaked-secret.env
+git commit -m "add config file"
+git push
